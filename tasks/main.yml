@@ -1,0 +1,7 @@
+---
+- name: InfluxDB2 - Installation
+  ansible.builtin.import_tasks: install.yml
+
+#- name: Configure
+#  ansible.builtin.import_tasks: configure.yml
+#  when: influxdb_service_state == "started" and not influxdb_skip_onboarding

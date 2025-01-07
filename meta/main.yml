@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  role_name: influxdb2
+  author: localh0rst
+  description: Install InfluxxDB 2.0
+  min_ansible_version: "2.12"
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - influxdb2
+dependencies: []

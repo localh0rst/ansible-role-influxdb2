@@ -1,0 +1,64 @@
+---
+influxdb_signing_key: https://repos.influxdata.com/influxdata-archive.key
+influxdb_repositories:
+  - "deb https://repos.influxdata.com/debian stable main"
+
+
+influxdb2_service_name: influxdb
+
+influxdb2_dependencies:
+  - apt-transport-https
+  - curl
+  - gnupg
+
+influxdb2_packages:
+  - influxdb2
+  - influxdb2-cli
+
+influxdb2_package_state: present
+
+influxdb2_config_path: /etc/influxdb
+influxdb2_bolt_path: /var/lib/influxdb/influxd.bolt
+influxdb2_engine_path: /var/lib/influxdb/engine
+
+influxdb2_host: http://localhost:8086
+
+influxdb2_config: {}
+#  http-bind-address: 0.0.0.0:8086
+#  reporting-disabled: true
+
+influxdb2_primary_org: example-org
+influxdb2_primary_bucket: example-bucket
+influxdb2_primary_username: example-user
+influxdb2_primary_password: ExAmPl3PA55W0rD
+
+# Set your root token for admin user
+influxdb2_admin_token: EXAMPLE-TOKEN
+
+influxdb2_orgs: []
+#  - name: main-org
+#    description: Main organization
+#  - name: guest-org
+
+influxdb2_users: []
+#  - name: admin01
+#    org: main-org
+#    password: secretPassword
+#  - name: guest01
+#    org: guest-org
+#    password: secretPassword
+
+influxdb2_buckets: []
+#  - name: bucket01
+#    description: First bucket
+#    org: main-org
+#    retention: 1d
+#  - name: bucket02
+#    description: Second bucket
+#    org: main-org
+
+influxdb2_service_enabled: true
+
+influxdb2_service_state: started
+
+influxdb2_skip_onboarding: false
