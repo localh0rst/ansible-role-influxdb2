@@ -16,8 +16,11 @@ influxdb2_packages:
 influxdb2_package_state: present
 
 influxdb2_config_path: /etc/influxdb
-influxdb2_bolt_path: /var/lib/influxdb/influxd.bolt
-influxdb2_engine_path: /var/lib/influxdb/engine
+influxdb2_env_file: /etc/default/influxdb2
+influxdb2_bolt_path:
+#influxdb2_bolt_path: /var/lib/influxdb/influxd.bolt
+influxdb2_engine_path:
+#influxdb2_engine_path: /var/lib/influxdb/engine
 
 influxdb2_host: http://localhost:8086
 
