@@ -1,28 +1,27 @@
 ---
 - name: InfluxDB2 - Install dependencies
   ansible.builtin.package:
-    name: "{{ influxdb_dependencies }}"
+    name: "{{ influxdb2_dependencies }}"
     state: present
     update_cache: true
 
 - name: InfluxDB2 - Add InfluxData APT signing key
   ansible.builtin.apt_key:
     state: present
-    url: "{{ influxdb_signing_key }}"
+    url: "{{ influxdb2_signing_key }}"
 
 - name: InfluxDB2 - Add InfluxData APT repositories
   ansible.builtin.apt_repository:
     repo: "{{ item }}"
     state: present
-  loop: "{{ influxdb_repositories }}"
+  loop: "{{ influxdb2_repositories }}"
 
 - name: InfluxDB2 - Install InfluxDB packages
   ansible.builtin.apt:
     name: "{{ item }}"
-    state: "{{ influxdb_package_state }}"
+    state: present
     update_cache: true
-  loop: "{{ influxdb_packages }}"
-  when: ansible_os_family == 'Debian'
+  loop: "{{ influxdb2_packages }}"
 
 # - name: Ensure InfluxDB packages are installed | Yum
 #   ansible.builtin.yum:
