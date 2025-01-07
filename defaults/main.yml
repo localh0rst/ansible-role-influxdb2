@@ -2,7 +2,7 @@
 influxdb2_signing_key: https://repos.influxdata.com/influxdata-archive.key
 influxdb2_repository: "deb https://repos.influxdata.com/debian buster stable"
 
-influxdb2_service_name: influxdb
+influxdb2_service_name: influxdb2
 
 influxdb2_dependencies:
   - apt-transport-https
@@ -13,14 +13,14 @@ influxdb2_packages:
   - influxdb2
   - influxdb2-cli
 
-influxdb2_package_state: present
-
-influxdb2_config_path: /etc/influxdb
+influxdb2_config_file: /etc/influxdb/config.yml
 influxdb2_env_file: /etc/default/influxdb2
-influxdb2_bolt_path:
-#influxdb2_bolt_path: /var/lib/influxdb/influxd.bolt
-influxdb2_engine_path:
-#influxdb2_engine_path: /var/lib/influxdb/engine
+
+influxdb2_bolt_path: /var/lib/influxdb/influxd.bolt
+influxdb2_engine_path: /var/lib/influxdb/engine
+
+
+
 
 influxdb2_host: http://localhost:8086
 

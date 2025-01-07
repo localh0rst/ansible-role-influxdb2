@@ -5,41 +5,40 @@
     state: present
     update_cache: true
 
-- name: InfluxDB2 - Add InfluxData APT signing key
+- name: InfluxDB2 - Add APT signing key
   ansible.builtin.apt_key:
     state: present
     url: "{{ influxdb2_signing_key }}"
 
-- name: InfluxDB2 - Add InfluxData APT repositories
+- name: InfluxDB2 - Add APT repositories
   ansible.builtin.apt_repository:
     repo: "{{ influxdb2_repository }}"
     state: present
 
-- name: InfluxDB2 - Install InfluxDB packages
+- name: InfluxDB2 - Install packages
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
     update_cache: true
   loop: "{{ influxdb2_packages }}"
 
-- name: InfluxDB2 - Create InfluxDB default environment file
+- name: InfluxDB2 - Create default environment file
   ansible.builtin.template:
     src: etc/default/influxdb2.j2
     dest: "{{ influxdb2_env_file }}"
     owner: root
     group: root
     mode: 0644
-  #  notify: Restart InfluxDB
+  notify: Restart InfluxDB
 
-#
-#- name: setup | Setup InfluxDB configuration file
-#  ansible.builtin.template:
-#    dest: "{{ influxdb_config_path }}/config.yml"
-#    group: influxdb
-#    mode: 0644
-#    owner: influxdb
-#    src: etc/influxdb/config.yml.j2
-#  notify: Restart InfluxDB
+- name: InfluxDB2 - Install configuration file
+  ansible.builtin.template:
+    dest: "{{ influxdb_config_file }}"
+    owner: root
+    group: root
+    mode: 0644
+    src: etc/influxdb/config.yml.j2
+  notify: Restart InfluxDB
 #
 #- name: setup | Ensure InfluxDB service is in the desired state
 #  ansible.builtin.service:
