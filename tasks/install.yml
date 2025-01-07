@@ -22,6 +22,22 @@
     update_cache: true
   loop: "{{ influxdb2_packages }}"
 
+- name: InfluxDB2 - Create bolt path
+  ansible.builtin.file:
+    state: directory
+    owner: influxdb
+    group: influxdb
+    mode: 750
+    path: "{{ influxdb2_bolt_path | dirname }}"
+
+- name: InfluxDB2 - Create engine path
+  ansible.builtin.file:
+    state: directory
+    owner: influxdb
+    group: influxdb
+    mode: 750
+    path: "{{ influxdb2_engine_path }}"
+
 - name: InfluxDB2 - Create default environment file
   ansible.builtin.template:
     src: etc/default/influxdb2.j2
