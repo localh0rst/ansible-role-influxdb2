@@ -1,8 +1,6 @@
 ---
-influxdb_signing_key: https://repos.influxdata.com/influxdata-archive.key
-influxdb_repositories:
-  - "deb https://repos.influxdata.com/debian stable main"
-
+influxdb2_signing_key: https://repos.influxdata.com/influxdata-archive.key
+influxdb2_repository: "deb https://repos.influxdata.com/debian buster stable"
 
 influxdb2_service_name: influxdb
 

@@ -12,9 +12,8 @@
 
 - name: InfluxDB2 - Add InfluxData APT repositories
   ansible.builtin.apt_repository:
-    repo: "{{ item }}"
+    repo: "{{ influxdb2_repository }}"
     state: present
-  loop: "{{ influxdb2_repositories }}"
 
 - name: InfluxDB2 - Install InfluxDB packages
   ansible.builtin.apt:
