@@ -49,7 +49,7 @@
 
 - name: InfluxDB2 - Install configuration file
   ansible.builtin.template:
-    dest: "{{ influxdb_config_file }}"
+    dest: "{{ influxdb2_config_file }}"
     owner: root
     group: root
     mode: 0644
