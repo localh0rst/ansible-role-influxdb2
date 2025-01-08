@@ -3,6 +3,6 @@ engine-path: "{{ influxdb2_engine_path }}"
 
 {% if influxdb2_config | length > 0 %}
 
-{{ influxdb2_config | ansible.utils.remove_keys( target = ['bolt-path', 'engine-path']) |to_nice_yaml }}
+{{ influxdb2_config | default({}, true) | ansible.utils.remove_keys( target = ['bolt-path', 'engine-path']) |to_nice_yaml }}
 
 {% endif %}
