@@ -1,5 +1,5 @@
 ---
-- name: configure | Ensure InfluxDB is up and running
+- name: InfluxDB2 - Ensure InfluxDB is up and running
   ansible.builtin.command: influx ping \
     --host "{{ influxdb_host }}"
   retries: 10
@@ -8,7 +8,7 @@
   until: _ping.rc == 0
   changed_when: false
 
-- name: configure | Set InfluxDB default user, organization, and bucket
+- name: InfluxDB2 - Set InfluxDB default user, organization, and bucket
   ansible.builtin.command: influx setup \
     --host "{{ influxdb_host }}" \
     --org {{ influxdb_primary_org }} \
@@ -23,7 +23,7 @@
     - '"has already been set up" not in _setup.stderr'
   changed_when: _setup.rc == 0
 
-- name: configure | Ensure organizations exist
+- name: InfluxDB2 - Ensure organizations exist
   ansible.builtin.command: influx org create \
     --host "{{ influxdb_host }}" \
     --name "{{ item.name }}" \
@@ -37,7 +37,7 @@
     - '"already exists" not in _org.stderr'
   changed_when: _org.rc == 0
 
-- name: configure | Ensure users exist
+- name: InfluxDB2 - Ensure users exist
   ansible.builtin.command: influx user create \
     --host "{{ influxdb_host }}" \
     --name "{{ item.name }}" \
@@ -52,7 +52,7 @@
     - '"already exists" not in _user.stderr'
   changed_when: _user.rc == 0
 
-- name: configure | Ensure buckets exist
+- name: InfluxDB2 - Ensure buckets exist
   ansible.builtin.command: influx bucket create \
     --host "{{ influxdb_host }}" \
     --name "{{ item.name }}" \

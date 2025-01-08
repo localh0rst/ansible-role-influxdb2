@@ -23,8 +23,6 @@ influxdb2_engine_path: /var/lib/influxdb/engine
 
 influxdb2_config: {}
 
-
-
 influxdb2_host: http://localhost:8086
 
 
