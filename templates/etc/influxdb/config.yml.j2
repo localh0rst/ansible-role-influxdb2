@@ -1,2 +1,1 @@
-{%  %}
 {{ influxdb2_config | ansible.utils.remove_keys( target = ['bolt-path', 'engine-path']) |to_nice_yaml }}
