@@ -15,6 +15,7 @@ influxdb2_packages:
 
 influxdb2_config_file: /etc/influxdb/config.yml
 influxdb2_env_file: /etc/default/influxdb2
+influxdb2_pid_file: /var/lib/influxdb/{{ influxdb2_service_name }}.pid
 
 influxdb2_bolt_path: /var/lib/influxdb/influxd.bolt
 influxdb2_engine_path: /var/lib/influxdb/engine
