@@ -67,3 +67,11 @@
     - _bucket.rc != 0
     - '"already exists" not in _bucket.stderr'
   changed_when: _bucket.rc == 0
+
+- name: InfluxDB2 - List buckets for API-Key generation
+  ansible.builtin.command: influx bucket list --json
+  register: _buckets
+
+- name: Debug - Show buckets
+  ansible.builtin.debug:
+    msg: "{{ _buckets.stdout | from_json }}"

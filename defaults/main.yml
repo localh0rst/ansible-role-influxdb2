@@ -56,6 +56,12 @@ influxdb2_buckets: []
 #    description: Second bucket
 #    org: main-org
 
+influxdb2_api_tokens:
+  - name: example-token
+    org: localh0rst
+    description: Example token
+    bucket: 
+
 influxdb2_service_enabled: true
 
 influxdb2_service_state: started
