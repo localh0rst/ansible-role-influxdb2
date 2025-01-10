@@ -56,12 +56,6 @@
     src: etc/influxdb/config.yml.j2
   notify: Restart InfluxDB
 
-- name: InfluxDB2 - Stop default InfluxDB2 service
-  ansible.builtin.systemd_service:
-    name: influxdb
-    state: stopped
-    enabled: false
-
 - name: InfluxDB2 - Generate systemd service file
   ansible.builtin.template:
     src: etc/systemd/influxdb2.service.j2
@@ -70,3 +64,8 @@
   notify: Reload Systemd
   changed_when: true
 
+- name: InfluxDB2 - Start default InfluxDB2 service
+  ansible.builtin.systemd_service:
+    name: "{{ influxdb2_service_name }}"
+    state: started
+    enabled: true
