@@ -68,10 +68,30 @@
     - '"already exists" not in _bucket.stderr'
   changed_when: _bucket.rc == 0
 
-- name: InfluxDB2 - List buckets for API-Key generation
-  ansible.builtin.command: influx bucket list --json
-  register: _buckets
-
-- name: Debug - Show buckets
-  ansible.builtin.debug:
-    msg: "{{ _buckets.stdout | from_json }}"
+#- name: InfluxDB2 - List buckets for API-Key generation
+#  ansible.builtin.command: influx bucket list \
+#    --host "{{ influxdb2_host }}" \
+#    --json
+#  register: _buckets
+#
+#- name: InfluxDB2 - Ensure API keys exist
+#  ansible.builtin.command: influx auth create \
+#    --host "{{ influxdb2_host }}" \
+#    --description "{{ item.description | d('') }}" \
+#    --org "{{ item.org }}" \
+#    --user "{{ item.user }}" \
+#    --write-bucket "{{ item.write_bucket }}" \
+#    --read-bucket "{{ item.read_bucket }}"
+#  loop: "{{ influxdb2_api_keys }}"
+#  loop_control:
+#    label: "{{ item.description }}"
+#  register: _auth
+#  failed_when:
+#    - _auth.rc != 0
+#    - '"already exists" not in _auth.stderr'
+#  changed_when: _auth.rc == 0
+#
+# Find bucket id named monitoring using json_query
+#- name: Debug - Show buckets
+#  ansible.builtin.debug:
+#    msg: "{{ _buckets.stdout | from_json | json_query('[?name==`monitoring`].id') }}"
